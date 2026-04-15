@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://119pecha.life/sitemap.xml
