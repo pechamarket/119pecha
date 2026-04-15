@@ -163,6 +163,11 @@ nav {
     font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: -0.5px;
+    color: white; /* 기본 흰색 (히어로 위) */
+}
+
+#header.scrolled .logo {
+    color: var(--secondary); /* 스크롤 시 검정색 */
 }
 
 .logo span {
@@ -671,11 +676,49 @@ nav {
 }
 
 @media (max-width: 768px) {
-    .nav-links, .header-cta { display: none; }
+    .nav-links { display: none; }
+    .header-cta { display: block; } /* 전화 버튼 노출 */
+    .btn-phone { padding: 0.6rem 1.2rem; font-size: 0.85rem; }
     .mobile-menu-btn { display: block; background: none; border: none; }
     .hero h1 { font-size: 2.5rem; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
     .form-row { grid-template-columns: 1fr; }
     .grid { grid-template-columns: 1fr; }
     .modal-content { padding: 1.5rem; }
+}
+
+/* Floating Call Button */
+.floating-call {
+    display: none;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1001;
+}
+
+@media (max-width: 768px) {
+    .floating-call {
+        display: block;
+    }
+}
+
+.btn-float {
+    width: 60px;
+    height: 60px;
+    background: #28a745;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 10px 25px rgba(40, 167, 69, 0.4);
+    animation: shake 3s infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: scale(1); }
+    10%, 30% { transform: scale(1.1) rotate(-10deg); }
+    20%, 40% { transform: scale(1.1) rotate(10deg); }
+    50% { transform: scale(1.1) rotate(0); }
 }
