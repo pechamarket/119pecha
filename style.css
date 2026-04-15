@@ -160,18 +160,21 @@ nav {
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 2rem; /* 훨씬 더 크게 조정 */
     font-weight: 800;
-    letter-spacing: -0.5px;
-    color: white; /* 기본 흰색 (히어로 위) */
+    letter-spacing: -1px;
+    color: white; 
+    text-shadow: 0 2px 15px rgba(0,0,0,0.5); /* 글자가 튀어나와 보이게 그림자 추가 */
 }
 
 #header.scrolled .logo {
-    color: var(--secondary); /* 스크롤 시 검정색 */
+    color: var(--secondary);
+    text-shadow: none;
 }
 
 .logo span {
-    color: var(--primary);
+    color: var(--accent); /* 119를 더 밝고 눈에 띄는 색으로 */
+    font-weight: 900;
 }
 
 .nav-links {
@@ -685,40 +688,4 @@ nav {
     .form-row { grid-template-columns: 1fr; }
     .grid { grid-template-columns: 1fr; }
     .modal-content { padding: 1.5rem; }
-}
-
-/* Floating Call Button */
-.floating-call {
-    display: none;
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 1001;
-}
-
-@media (max-width: 768px) {
-    .floating-call {
-        display: block;
-    }
-}
-
-.btn-float {
-    width: 60px;
-    height: 60px;
-    background: #28a745;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 10px 25px rgba(40, 167, 69, 0.4);
-    animation: shake 3s infinite;
-}
-
-@keyframes shake {
-    0%, 100% { transform: scale(1); }
-    10%, 30% { transform: scale(1.1) rotate(-10deg); }
-    20%, 40% { transform: scale(1.1) rotate(10deg); }
-    50% { transform: scale(1.1) rotate(0); }
 }

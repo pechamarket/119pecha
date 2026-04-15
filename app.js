@@ -35,20 +35,48 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Basic animation for feedback
             const submitBtn = contactForm.querySelector('button');
             const originalText = submitBtn.innerText;
             
             submitBtn.disabled = true;
             submitBtn.innerText = '상담 신청 중...';
 
-            // Simulate API call
-            setTimeout(() => {
-                alert('상담 신청이 완료되었습니다. 전문가가 곧 연락드리겠습니다.');
-                contactForm.reset();
+            // 실제 텔레그램 전송 로직
+            const botToken = '8643628957:AAFaY17knYFmNe2SBkB2TFMaKkXxvSpF4_E';
+            const chatId = '6701316967';
+            
+            // 데이터 수집
+            const carNumber = document.getElementById('car-number').value;
+            const phone = document.getElementById('phone').value;
+            const messageData = document.getElementById('message').value;
+
+            // 텔레그램 메시지 구성
+            const text = `🔔 [119폐차 문의]\n\n🚗 차량번호: ${carNumber}\n📞 연락처: ${phone}\n💬 문의내용: ${messageData || '없음'}\n⏰ 일시: ${new Date().toLocaleString()}`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('상담 신청이 완료되었습니다. 전문가가 곧 연락드리겠습니다.');
+                    contactForm.reset();
+                } else {
+                    alert('오류가 발생했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('네트워크 오류가 발생했습니다. 전화 상담을 이용해 주세요.');
+            })
+            .finally(() => {
                 submitBtn.disabled = false;
                 submitBtn.innerText = originalText;
-            }, 1500);
+            });
         });
     }
 
