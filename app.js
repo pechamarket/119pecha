@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
             submitBtn.innerText = '상담 신청 중...';
 
-            // 실제 텔레그램 전송 로직
-            const botToken = '8643628957:AAFaY17knYFmNe2SBkB2TFMaKkXxvSpF4_E';
-            const chatId = '6701316967';
+            // 실제 작동하는 폐차마켓 텔레그램 정보 적용
+            const botToken = '8602319567:AAG8VPaq0Ia0DsRAPe5fyCKXo6yzA40kSm0';
+            const chatId = '8781562240';
             
             // 데이터 수집
             const carNumber = document.getElementById('car-number').value;
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageData = document.getElementById('message').value;
 
             // 텔레그램 메시지 구성
-            const text = `🔔 [119폐차 문의]\n\n🚗 차량번호: ${carNumber}\n📞 연락처: ${phone}\n💬 문의내용: ${messageData || '없음'}\n⏰ 일시: ${new Date().toLocaleString()}`;
+            const text = `🔔 [119폐차 신청 알림]\n\n🚗 차량번호: ${carNumber}\n📞 연락처: ${phone}\n💬 문의내용: ${messageData || '없음'}\n⏰ 시간: ${new Date().toLocaleString()}`;
 
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: 'POST',
@@ -66,12 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('상담 신청이 완료되었습니다. 전문가가 곧 연락드리겠습니다.');
                     contactForm.reset();
                 } else {
-                    alert('오류가 발생했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.');
+                    alert('알림 전송 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('네트워크 오류가 발생했습니다. 전화 상담을 이용해 주세요.');
+                alert('네트워크 연결 문제로 상담 신청에 실패했습니다.');
             })
             .finally(() => {
                 submitBtn.disabled = false;
