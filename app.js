@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageData = document.getElementById('message').value;
 
             // 텔레그램 메시지 구성
-            const text = `🔔 [119폐차 신청 알림]\n\n🚗 차량번호: ${carNumber}\n📞 연락처: ${phone}\n💬 문의내용: ${messageData || '없음'}\n⏰ 시간: ${new Date().toLocaleString()}`;
+            const text = `🔔 [119폐차 신청 알림]\n>> 119폐차(119pecha.life)\n\n🚗 차량번호: ${carNumber}\n📞 연락처: ${phone}\n💬 문의내용: ${messageData || '없음'}\n⏰ 시간: ${new Date().toLocaleString()}`;
 
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: 'POST',
