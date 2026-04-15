@@ -646,7 +646,7 @@ nav {
 
 /* Animations */
 .animate-up {
-    animation: fadeInUp 0.8s ease backwards;
+    animation: fadeInUp 0.8s ease forwards;
 }
 
 @keyframes fadeInUp {
